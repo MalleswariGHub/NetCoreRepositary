@@ -1,4 +1,5 @@
 ﻿using CateLogAPI.Entities;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace CateLogAPI.Data
 {
     public interface ICatelogContext
     {
-        ICatelogContext<Product> Products { get; }
+        IMongoCollection<Product> Products { get; }
     }
 }

@@ -1,3 +1,5 @@
+using CateLogAPI.Data;
+using CateLogAPI.Repositary;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +33,9 @@ namespace CateLogAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CateLogAPI", Version = "v1" });
             });
+
+            services.AddScoped<ICatelogContext, CatelogContext>();
+            services.AddScoped<IProductRepositary, ProductRepositary>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +56,8 @@ namespace CateLogAPI
             {
                 endpoints.MapControllers();
             });
+
+           
         }
     }
 }

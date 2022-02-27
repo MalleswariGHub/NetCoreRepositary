@@ -15,8 +15,10 @@ namespace CateLogAPI.Data
             var client = new MongoClient(configuration.GetValue<string>("DatabaseSetting:ConnectionString"));
             var database = client.GetDatabase(configuration.GetValue<string>("DatabaseSetting:DatabaseName"));
 
-            Products = (ICatelogContext<Product>)database.GetCollection<Product>(configuration.GetValue<string>("DatabaseSetting:CollectionName"));
+            Products = database.GetCollection<Product>(configuration.GetValue<string>("DatabaseSettings:CollectionName"));
+            CatelogContextSeed.SeedData(Products);
         }
-        public ICatelogContext<Product> Products { get; }
-            }
+        public IMongoCollection<Product> Products { get; }
+
+    }
 }
